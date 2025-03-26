@@ -3,8 +3,9 @@ import { useParams, Link, useLocation} from "react-router-dom";
 import { fetchMoviesById } from '../moviesApi';
 import MovieCast from '../components/MovieCast/MovieCast'
 import MovieReviews from '../components/MovieReviews/MoviesReviews'
+import MovieInfo from '../components/MovieInfo/MovieInfo'
 
-const pathToImg = 'https://image.tmdb.org/t/p/w500';
+
 export default function MovieDetailsPage() { 
 
     const { movieId } = useParams();
@@ -16,42 +17,41 @@ export default function MovieDetailsPage() {
     const backLinkRef = useRef(location.state?.from || '/movies');
 
     useEffect(() => {
+
+        if (!movieId) return;
+
         const getMovieDetails = async () => {
              
             setIsLoading(true);
             try {
             
-             const data = await fetchMoviesById (movieId);
-             setMovie(data);
+                const data = await fetchMoviesById(movieId);
+                setMovie(data);
+                console.log(data);
              
-         } catch(err) {
-            setError(err.message);
-         }  finally {
-        setIsLoading(false);
-      }  
-        }
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setIsLoading(false);
+            }
+        };
         getMovieDetails();
     },[movieId])
 
     return (
         <div>
             <Link to={backLinkRef.current}>Go back</Link>
-
-              {isLoading && <b>Loading...</b>}
-              {error && <b>{error}</b>}
-            {movie && <div><img src={`${pathToImg}${movie.poster_path}`} alt={movie.title} />
-            <h1>{movie.title}</h1>
-             <p>User score : {`${(movie.vote_average * 10).toFixed(0)}%`}</p>
-            <h2>Overview</h2>
-            <p>{movie.overview}</p>
-            <h2>Genres</h2>
-            <p>{ movie.genre_ids ? movie.genre_ids.map(genre=> genre.name).join(', '): 'No genres available'}</p></div>}
-        <h2>Additional information</h2>
-        <ul>
-           <li><Link to='/movies/:movieId/cast'><MovieCast /></Link></li> 
-          <li> <Link to='/movies/:movieId/reviews'><MovieReviews /></Link></li>
-          </ul>
-           </div>
-    )
+            {isLoading && <b>Loading...</b>}
+            {error && <b>{error}</b>}
+            {movie && <MovieInfo movie={movie} />}
+            <div>
+                <h2>Additional information</h2>
+                <ul>
+                    <li><Link to='cast' state={{ from: backLinkRef.current }}><MovieCast /></Link></li>
+                    <li> <Link to='reviews' state={{ from: backLinkRef.current }}><MovieReviews /></Link></li>
+                </ul>
+            </div>
+            
+        </div>
+    );
 };
- 

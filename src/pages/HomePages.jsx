@@ -10,19 +10,19 @@ export default function HomePage() {
 
     useEffect(() => {
       const getMovies = async () => {
-         setIsLoading(true);
+        setIsLoading(true);
         try {
        
-            const data = await fetchMovies();
-            setMovies(data);
+          const data = await fetchMovies();
+          setMovies(data);
             
-        } catch(err){
+        } catch (err) {
           setError(err.message);
           
-        }finally {
-        setIsLoading(false);
-      }
-        }  
+        } finally {
+          setIsLoading(false);
+        }
+      };  
         getMovies();
     },[]);
     

@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useSearchParams } from "react-router-dom";
 import { useDebounce } from 'use-debounce';
-import MovieList from "../components/MovieList/MovieList"
+import MovieList from '../components/MovieList/MovieList';
+import SearchForm from '../components/SearchForm/SearchForm'
 import { searchMovies } from "../moviesApi";
 
 export default function MoviesPage() {
@@ -11,17 +12,9 @@ export default function MoviesPage() {
   const query = searchParams.get('query') ?? '';
   const [debouncedQuery] = useDebounce(query, 300);
 
-  const changeSearchText = (evn) => {
-    const nextParams = new URLSearchParams(searchParams);
-
-    if (evn.target.value !== '') {
-      nextParams.set('query', evn.target.value);
-    } else {
-      nextParams.delete('query');
-    
-    }
-    setSearchParams(nextParams);
-  }
+  const handleSubmit = value => { 
+    setSearchParams({query: value})
+  };
 
   useEffect(() => {
     if (query) {
@@ -33,10 +26,10 @@ export default function MoviesPage() {
    }
     }, [query]);
 
-  return (
+       return (
     <div>
       <h1>Search Movies</h1>
-      <input type="text" value={query} onChange={changeSearchText}/>
+      <SearchForm onSubmit={handleSubmit}/>
       <MovieList movies={movies}/>
     </div>
   )
