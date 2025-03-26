@@ -24,17 +24,14 @@ export default function MoviesPage() {
   }
 
   useEffect(() => {
-    async function getMovies() {
-      try {
-        
-        const data = await searchMovies(debouncedQuery);
+    if (query) {
+      const getMovies = async () => {
+        const data = await searchMovies(query);
         setMovies(data);
-      } catch (error) {
-        console.error("Error fetching movies:", error);
-    }
-    }
-      getMovies();
-    }, [debouncedQuery]);
+      };
+       getMovies(); 
+   }
+    }, [query]);
 
   return (
     <div>

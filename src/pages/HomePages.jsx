@@ -6,18 +6,19 @@ export default function HomePage() {
     
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
 
     useEffect(() => {
-      async function getMovies() {
+      const getMovies = async () => {
+         setIsLoading(true);
         try {
-        setIsLoading(true);
-        setError(false);
+       
             const data = await fetchMovies();
             setMovies(data);
             
-        } catch{
-           setError(true);
+        } catch(err){
+          setError(err.message);
+          
         }finally {
         setIsLoading(false);
       }
@@ -28,8 +29,8 @@ export default function HomePage() {
     return (
         <div>
         <h1>Trending Today</h1>
-         {isLoading && <b>Loading users...</b>}
-      {error && <b>Whoops there was an error, plz reload the page...</b>}
+         {isLoading && <b>Loading...</b>}
+      {error && <b>{error}</b>}
           {movies.length > 0 &&  <MovieList movies={movies}/>} 
         </div>
     );

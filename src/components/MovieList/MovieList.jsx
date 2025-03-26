@@ -1,6 +1,4 @@
-import { Link } from 'react-router-dom'
-import MovieDetailsPage from '../../pages/MovieDetailsPage'
-
+import { Link } from 'react-router-dom';
 
 export default function MovieList({ movies }) { 
      if (movies.length === 0) {
