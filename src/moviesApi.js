@@ -69,6 +69,7 @@ export const fetchCreditsMovies = async (movieId) => {
     headers: {
       Authorization: `Bearer ${api_key}`,
     },
-  });
+   });
+
   return resp.data.cast;
 }

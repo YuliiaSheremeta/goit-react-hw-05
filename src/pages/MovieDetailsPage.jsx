@@ -1,9 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams, Link, useLocation} from "react-router-dom";
 import { fetchMoviesById } from '../moviesApi';
-import MovieCast from '../components/MovieCast/MovieCast'
-import MovieReviews from '../components/MovieReviews/MoviesReviews'
-import MovieInfo from '../components/MovieInfo/MovieInfo'
+import MovieInfo from '../components/MovieInfo/MovieInfo';
+
 
 
 export default function MovieDetailsPage() { 
@@ -27,7 +26,7 @@ export default function MovieDetailsPage() {
             
                 const data = await fetchMoviesById(movieId);
                 setMovie(data);
-                console.log(data);
+               
              
             } catch (err) {
                 setError(err.message);
@@ -47,8 +46,8 @@ export default function MovieDetailsPage() {
             <div>
                 <h2>Additional information</h2>
                 <ul>
-                    <li><Link to='cast' state={{ from: backLinkRef.current }}><MovieCast /></Link></li>
-                    <li> <Link to='reviews' state={{ from: backLinkRef.current }}><MovieReviews /></Link></li>
+                    <li><Link to='cast' state={{ from: backLinkRef.current }}>Cast</Link></li>
+                    <li> <Link to='reviews' state={{ from: backLinkRef.current }}>Reviews</Link></li>
                 </ul>
             </div>
             
