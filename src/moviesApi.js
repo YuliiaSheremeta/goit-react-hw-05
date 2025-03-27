@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = 'https://api.themoviedb.org/3/trending/movie/day?language=en-US';
+const url = 'https://api.themoviedb.org/3';
 const api_key = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyNDEwYTgzMmE0ZWU4NmRiYWQ5Mjc1MTVhZTFjY2QyYyIsIm5iZiI6MTc0MjgzOTQ2MS4wNzcsInN1YiI6IjY3ZTE5ZWE1ZDcwYzYxNTkwMzc1YjlhYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.QXCD6cNex1WI4Tk1UPtJ3uZw1XZj2daTAw3SwMvkG-E';
 
 
