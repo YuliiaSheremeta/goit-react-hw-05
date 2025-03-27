@@ -5,6 +5,7 @@ import MovieInfo from '../components/MovieInfo/MovieInfo';
 
 
 
+
 export default function MovieDetailsPage() { 
 
     const { movieId } = useParams();
@@ -13,7 +14,7 @@ export default function MovieDetailsPage() {
     const [error, setError] = useState(null);
 
     const location = useLocation();
-    const backLinkRef = useRef(location.state?.from || '/');
+    const backLinkRef = useRef(location.state?.from || '/movie');
 
     useEffect(() => {
 
@@ -36,25 +37,24 @@ export default function MovieDetailsPage() {
         };
         getMovieDetails();
     },[movieId])
-
-    return (
-        <>
-            <Link to={backLinkRef.current}>Go back</Link>
-            {isLoading && <b>Loading...</b>}
-            {error && <b>{error}</b>}
-            {movie && <MovieInfo movie={movie} />}
-            <div>
-                <h2>Additional information</h2>
-                <ul>
-                    <li><Link to='cast' state={{ from: backLinkRef.current }}>Cast</Link></li>
-                    <li> <Link to='reviews' state={{ from: backLinkRef.current }}>Reviews</Link></li>
-                </ul>
-            </div>
-            <div>
-                <Suspense fallback={<p>Loading...</p>}>
-                    <Outlet/>
-            </Suspense>
-    </div>
-        </>
-    );
+return (
+    <>
+        <Link to={backLinkRef.current}>Go back</Link>
+        {isLoading && <b>Loading...</b>}
+        {error && <b>{error}</b>}
+        {movie && <MovieInfo movie={movie} />}
+        <div>
+            <h2>Additional information</h2>
+            <ul>
+                <li><Link to='cast' state={{ from: backLinkRef.current }}>Cast</Link></li>
+                <li> <Link to='reviews' state={{ from: backLinkRef.current }}>Reviews</Link></li>
+            </ul>
+        </div>
+        <div>
+            <Suspense fallback={<p>Loading...</p>}>
+                <Outlet/>
+        </Suspense>
+</div>
+    </>
+);
 };

@@ -31,7 +31,7 @@ export default function MovieCast() {
             {castMovie.length > 0 ? (
                 castMovie.map((actor) => (
                     <div key={actor.id}>
-                        <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name} />
+                        <img src={`https://image.tmdb.org/t/p/w500${actor.profile_path}`} alt={actor.name}  width={200}/>
                         <p>{actor.name}</p>
                         <p>{actor.character}</p>
                     </div>
