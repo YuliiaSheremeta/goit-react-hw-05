@@ -13,7 +13,7 @@ export default function MovieCast() {
             setIsLoading(true);
             try {
                 const data = await fetchCreditsMovies(movieId);
-                setCastMovie(data.cast); 
+                setCastMovie(data); 
             } catch (err) {
                 setError(err.message);
             } finally {

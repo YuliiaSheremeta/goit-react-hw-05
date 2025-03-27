@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from "react";
-import { useParams, Link, useLocation} from "react-router-dom";
+import { useEffect, useState, useRef, Suspense } from "react";
+import { useParams, Link, useLocation, Outlet} from "react-router-dom";
 import { fetchMoviesById } from '../moviesApi';
 import MovieInfo from '../components/MovieInfo/MovieInfo';
 
@@ -38,7 +38,7 @@ export default function MovieDetailsPage() {
     },[movieId])
 
     return (
-        <div>
+        <>
             <Link to={backLinkRef.current}>Go back</Link>
             {isLoading && <b>Loading...</b>}
             {error && <b>{error}</b>}
@@ -50,7 +50,11 @@ export default function MovieDetailsPage() {
                     <li> <Link to='reviews' state={{ from: backLinkRef.current }}>Reviews</Link></li>
                 </ul>
             </div>
-            
-        </div>
+            <div>
+                <Suspense fallback={<p>Loading...</p>}>
+                    <Outlet/>
+            </Suspense>
+    </div>
+        </>
     );
 };
