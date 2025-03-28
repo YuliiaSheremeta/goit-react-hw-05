@@ -27,8 +27,10 @@ export default function HomePage() {
     },[]);
     
     return (
-        <div>
-        <h1>Trending Today</h1>
+        <div >
+       <h1 style={{ textAlign: 'center', fontStyle: 'italic', color: '#4CAF50' }}>
+            Trending Today
+        </h1>
          {isLoading && <b>Loading...</b>}
       {error && <b>{error}</b>}
           {movies.length > 0 &&  <MovieList movies={movies}/>} 

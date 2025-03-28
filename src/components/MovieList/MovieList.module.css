@@ -1,0 +1,21 @@
+.movielist {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+   
+}
+
+.movieitem {
+    width: calc(20% - 10px);
+    margin-bottom: 20px;
+   
+}
+
+.movieposter {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    
+}

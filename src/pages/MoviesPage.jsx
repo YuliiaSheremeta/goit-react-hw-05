@@ -28,7 +28,7 @@ export default function MoviesPage() {
 
        return (
     <div>
-      <h1>Search Movies</h1>
+      <h1 style={{ textAlign: 'center', fontStyle: 'italic', color: '#4CAF50' }}>Search Movies</h1>
       <SearchForm onSubmit={handleSubmit}/>
       <MovieList movies={movies}/>
     </div>

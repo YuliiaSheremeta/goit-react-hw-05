@@ -1,0 +1,41 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.input {
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input:focus {
+    border-color: #007BFF;
+    /* Змінює колір рамки при фокусі */
+    outline: none;
+    /* Сховати стандартне обведення */
+}
+
+.button {
+    padding: 10px 15px;
+    margin-left: 10px;
+    background-color: #df698b;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #f50957;
+    color: #f6eff1;
+   
+    
+}

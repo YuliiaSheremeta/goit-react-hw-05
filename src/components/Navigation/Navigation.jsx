@@ -10,8 +10,8 @@ const getLinkStyles = ({ isActive }) => {
 export default function Navigation() { 
 
     return (
-        <div>
-            <nav>
+        <div className={css.header}>
+            <nav className={css.nav}>
                 <NavLink to='/' className={getLinkStyles}>Home</NavLink>
                 <NavLink to='/movies' className={getLinkStyles}>Movies</NavLink>
             </nav>
